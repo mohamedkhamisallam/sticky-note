@@ -1,0 +1,68 @@
+<section id="register">
+    <div class="container ">
+        <form class="w-75"  [formGroup]="registerForm" (ngSubmit)="registerFunction(registerForm)">
+            <div class="row">
+                <div class="col-md-6">
+                 <input type="text"[class.is-valid]="registerForm.controls.first_name.status=='VALID'" 
+                 [class.is-invalid]="registerForm.controls.first_name.status=='INVALID'&& registerForm.controls.first_name.touched==true"
+                 class="form-control my-3" placeholder="Enter First Name" formControlName="first_name">
+                 <div class="alert alert-danger" *ngIf="registerForm.controls.first_name.errors && registerForm.controls.first_name.touched">
+                     <p *ngIf="registerForm.controls.first_name.errors.required">first name is required</p>
+                   <p *ngIf="registerForm.controls.first_name.errors.minlength">minmum length 3 letters</p>
+                   <p *ngIf="registerForm.controls.first_name.errors.maxlength" >maximun length 13 letters</p>
+                 </div>
+            </div>
+            <div class="col-md-6">
+                <input type="text"[class.is-valid]="registerForm.controls.last_name.status=='VALID'"
+                [class.is-invalid]="registerForm.controls.last_name.status=='INVALID'&& registerForm.controls.last_name.touched==true"
+                class="form-control my-3" placeholder="Enter Last Name" formControlName="last_name">
+                <div class="alert alert-danger" *ngIf="registerForm.controls.last_name.errors && registerForm.controls.last_name.touched">
+                    <p *ngIf="registerForm.controls.last_name.errors.required">last name is required</p>
+                  <p *ngIf="registerForm.controls.last_name.errors.minlength">minmum length 3 letters</p>
+                  <p *ngIf="registerForm.controls.last_name.errors.maxlength" >maximun length 13 letters</p>
+                </div>
+            </div>
+            </div>
+            <input type="email" [class.is-valid]="registerForm.controls.email.status=='VALID'" 
+            [class.is-invalid]="registerForm.controls.email.status=='INVALID'&& registerForm.controls.email.touched==true"
+            class="form-control my-3" placeholder="Enter Your E-Mail" formControlName="email">
+            <div class="alert alert-danger" *ngIf="registerForm.controls.email.errors && registerForm.controls.email.touched">
+                <p *ngIf="registerForm.controls.email.errors.required">email is required</p>
+              <p *ngIf="registerForm.controls.email.errors.email">email combination is not correct</p>
+            
+            </div>
+            <input type="number"[class.is-valid]="registerForm.controls.age.status=='VALID'"
+            [class.is-invalid]="registerForm.controls.age.status=='INVALID'&& registerForm.controls.age.touched==true"
+            class="form-control my-3" placeholder="Enter Your Age" formControlName="age">
+            <div class="alert alert-danger" *ngIf="registerForm.controls.age.errors && registerForm.controls.age.touched">
+                <p *ngIf="registerForm.controls.age.errors.required">age is required</p>
+              <p *ngIf="registerForm.controls.age.errors.min">minimun age is a8 years old</p>
+              <p *ngIf="registerForm.controls.age.errors.max" >maximun age is 100 years old</p>
+            </div>
+
+            <input type="password" [class.is-valid]="registerForm.controls.password.status=='VALID'" 
+            [class.is-invalid]="registerForm.controls.password.status=='INVALID'&& registerForm.controls.password.touched==true"
+            class="form-control my-3" placeholder="Enter Your password"  formControlName="password">
+            <div class="alert alert-danger" *ngIf="registerForm.controls.password.errors && registerForm.controls.password.touched">
+                <p *ngIf="registerForm.controls.password.errors.required">password is required</p>
+              <p *ngIf="registerForm.controls.password.errors.pattern">
+                At least 1 Uppercase,
+                At least 1 Lowercase,
+                At least 1 Number,
+                At least 1 Symbol, symbol allowed --> !@#$%^&*_=+-,
+                Min 8 chars and Max 12 char.
+              </p>
+            
+             
+            </div>
+            <div class="alert is already registred alert-danger" *ngIf="errorMessage" >
+                <p>this email is already registred</p>  
+            </div>
+            <button  type="submit" class="btn btn-primary form-control " [disabled]="registerForm.invalid" >
+                <span  *ngIf="!isRegister">Register</span>
+                <span  *ngIf="isRegister">Loading.....</span>
+            </button>
+            <p  *ngIf="messagesuccess"  class="valid alert-success text-center my-3"> success</p>
+        </form>
+    </div>
+</section>

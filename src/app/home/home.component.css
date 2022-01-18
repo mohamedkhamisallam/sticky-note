@@ -1,0 +1,22 @@
+.note{
+    background-color: #ffcccc;
+   
+    height: 100;
+    width: 100;
+
+}
+
+.pointer{
+    cursor: pointer;
+
+}
+.red{
+  
+    color: red;
+}
+.green{
+    color: green;
+}
+.over{
+    overflow: auto;
+}
